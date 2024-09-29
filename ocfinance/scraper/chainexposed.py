@@ -28,7 +28,7 @@ def _extract_data_from_scripts(scripts):
                 x = json.loads(x_data)
                 y = json.loads(y_data)
 
-                df = pd.DataFrame({ name: y }, index=pd.to_datetime(x).date)
+                df = pd.DataFrame({ name: pd.to_numeric(y, errors='coerce') }, index=pd.to_datetime(x).date)
                 df.index.name = 'Date'
                 dfs.append(df)
 

@@ -10,3 +10,5 @@ ENV/
 
 # Other
 dist/
+downloaded_files/
+latest_logs/

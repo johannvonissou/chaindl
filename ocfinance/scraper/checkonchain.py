@@ -27,7 +27,7 @@ def _extract_data_from_scripts(scripts):
                 x = json.loads(x_data)
                 y = json.loads(y_data)
 
-                df = pd.DataFrame({ name: y }, index=pd.to_datetime(x).date)
+                df = pd.DataFrame({ name: pd.to_numeric(y, errors='coerce') }, index=pd.to_datetime(x).date)
                 df.index.name = 'Date'
                 df = df.loc[~df.index.duplicated(keep='first')] # TODO: Give user option to either choose drop dupes or take avg
                 dfs.append(df)

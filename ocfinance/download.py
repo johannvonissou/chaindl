@@ -8,6 +8,7 @@ def download(url, start=None, end=None):
     """
     CHECKONCHAIN_BASE_URL = "https://charts.checkonchain.com"
     CHAINEXPOSED_BASE_URL = "https://chainexposed.com"
+    BITBO_BASE_URL = "https://charts.bitbo.io"
 
     data = pd.DataFrame()
 
@@ -15,6 +16,8 @@ def download(url, start=None, end=None):
         data = scraper.checkonchain._download(url)
     elif url.startswith(CHAINEXPOSED_BASE_URL):
         data = scraper.chainexposed._download(url)
+    elif url.startswith(BITBO_BASE_URL):
+        data = scraper.bitbo._download(url)
     else:
         raise ValueError("URL does not match any known provider.")
     

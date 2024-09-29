@@ -11,6 +11,7 @@ pip install ocfinance
 ## Supported Websites
 - **[CheckOnChain](https://charts.checkonchain.com/)** (recommended)
 - **[ChainExposed](https://chainexposed.com/)** (recommended)
+- **[Woocharts](https://woocharts.com/)** (recommended)
 - [Bitbo Charts](https://charts.bitbo.io/) (very slow)
 
 ## Usage

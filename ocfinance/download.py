@@ -9,6 +9,7 @@ def download(url, start=None, end=None):
     CHECKONCHAIN_BASE_URL = "https://charts.checkonchain.com"
     CHAINEXPOSED_BASE_URL = "https://chainexposed.com"
     BITBO_BASE_URL = "https://charts.bitbo.io"
+    WOOCHARTS_BASE_URL = "https://woocharts.com"
 
     data = pd.DataFrame()
 
@@ -18,7 +19,9 @@ def download(url, start=None, end=None):
         data = scraper.chainexposed._download(url)
     elif url.startswith(BITBO_BASE_URL):
         data = scraper.bitbo._download(url)
+    elif url.startswith(WOOCHARTS_BASE_URL):
+        data = scraper.woocharts._download(url)
     else:
-        raise ValueError("URL does not match any known provider.")
+        raise ValueError("URL does not match any known source. Find the list of supported websites here: https://github.com/dhruvan2006/ocfinance/blob/main/README.md")
     
     return data

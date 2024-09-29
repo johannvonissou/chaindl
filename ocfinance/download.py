@@ -14,7 +14,7 @@ def download(url, start=None, end=None):
     if url.startswith(CHECKONCHAIN_BASE_URL):
         data = scraper.checkonchain._download(url)
     elif url.startswith(CHAINEXPOSED_BASE_URL):
-        raise NotImplementedError("ChainExposed not implemented yet.")
+        data = scraper.chainexposed._download(url)
     else:
         raise ValueError("URL does not match any known provider.")
     

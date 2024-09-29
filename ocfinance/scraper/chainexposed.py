@@ -15,21 +15,21 @@ def _download(url):
 
     merged_df = pd.concat(dfs, axis=1, join='outer')
     return merged_df
-    
+
 def _extract_data_from_scripts(scripts):
     dfs = []
+
     for script in scripts:
         if script.string and 'Plotly.newPlot' in script.string:
-            matches = re.findall(r'"name":\s*"([^"]*)"\s*,.*?"x":\s*(\[[^\]]*\])\s*,\s*"y":\s*(\[[^\]]*\])', script.string)
+            matches = re.findall(r'var trace\d+ =\s*{\s*x:\s*(\[[^\]]*\]),\s*y:\s*(\[[^\]]*\]),.*?name:\s*\'(.*?)\'', script.string, re.DOTALL)
             for match in matches:
-                name, x_data, y_data = match
+                x_data, y_data, name = match
                 name = name.replace('\\u003c', '<').replace('\\u003e', '>')
                 x = json.loads(x_data)
                 y = json.loads(y_data)
 
                 df = pd.DataFrame({ name: y }, index=pd.to_datetime(x).date)
                 df.index.name = 'Date'
-                df = df.loc[~df.index.duplicated(keep='first')] # TODO: Give user option to either choose drop dupes or take avg
                 dfs.append(df)
-    
+
     return dfs

@@ -9,8 +9,14 @@ def _download(url, **kwargs):
     splits = urlparse(url).path.split('/')
     id = splits[-1]
 
+    # Cryptoquant's own metrics
+    if splits[1] == 'asset':
+        raise NotImplementedError("Only third party metrics on cryptoquant have been implemented.")
+
     email = kwargs.get('email')
     password = kwargs.get('password')
+    if not email or not password:
+        raise TypeError("Email and/or password hasn't been passed")
     data = _get_json(id, email, password)
 
     columns = data['data']['result']['columns']

@@ -1,8 +1,10 @@
 import re
 import json
+import time
 
 import pandas as pd
 from seleniumbase import SB
+from selenium.common.exceptions import StaleElementReferenceException
 
 def _download(url):
     content = _get_script_content(url)
@@ -25,11 +27,18 @@ def _get_script_content(url):
         sb.uc_open_with_reconnect(url, 4)
         sb.uc_gui_click_captcha()
 
-        script_tags = sb.find_elements("script")
-        for script_tag in script_tags:
-            script_inner_html = script_tag.get_attribute("innerHTML")
-            if script_inner_html and 'trace' in script_inner_html:
-                script_content += script_inner_html
+        attempts = 0
+        while attempts < 3:
+            try:
+                script_tags = sb.find_elements("script")
+                for script_tag in script_tags:
+                    script_inner_html = script_tag.get_attribute("innerHTML")
+                    if script_inner_html and 'trace' in script_inner_html:
+                        script_content += script_inner_html
+                break
+            except StaleElementReferenceException:
+                attempts += 1
+                time.sleep(1)
 
     return script_content
 

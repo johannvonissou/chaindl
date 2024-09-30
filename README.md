@@ -1,6 +1,6 @@
-# OCFINANCE
+# OCFINANCE (Works with Cryptoquant)
 
-Download On-Chain data from a variety of sources
+Download On-Chain data from cryptoquant, checkonchain, etc.
 
 ## Installation
 Use pip to install the ocfinance package.
@@ -13,7 +13,8 @@ pip install ocfinance
 - **[ChainExposed](https://chainexposed.com/)** (recommended)
 - **[Woocharts](https://woocharts.com/)** (recommended)
 - **[Cryptoquant](https://cryptoquant.com/)** (_follow guide below_)
-- [Bitbo Charts](https://charts.bitbo.io/) (very slow)
+- [Bitbo Charts](https://charts.bitbo.io/) (slow)
+- [Bitcoin Magazine Pro](https://www.bitcoinmagazinepro.com) (slow)
 
 ## Usage
 Get the url of the chart and download it:
@@ -21,9 +22,14 @@ Get the url of the chart and download it:
 ```python
 import ocfinance as of
 data = of.download("https://charts.checkonchain.com/btconchain/pricing/pricing_picycleindicator/pricing_picycleindicator_light.html")
+
+# Export as CSV
+data.to_csv('out.csv')
 ```
 ## Cryptoquant guide
-_Email and password of your account are required._
+**_Email and password of your account are required._**
+
+**Works only with third party indicators**
 
 Pass your email and password to the download function (preferably using environment variables)
 ```python

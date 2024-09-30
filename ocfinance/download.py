@@ -11,19 +11,22 @@ def download(url, start=None, end=None, **kwargs):
     BITBO_BASE_URL = "https://charts.bitbo.io"
     WOOCHARTS_BASE_URL = "https://woocharts.com"
     CRYPTOQUANT_BASE_URL = "https://cryptoquant.com"
+    BITCOINMAGAZINEPRO_BASE_URL = "https://www.bitcoinmagazinepro.com"
 
     data = pd.DataFrame()
 
     if url.startswith(CHECKONCHAIN_BASE_URL):
-        data = scraper.checkonchain._download(url, **kwargs)
+        data = scraper.checkonchain._download(url)
     elif url.startswith(CHAINEXPOSED_BASE_URL):
-        data = scraper.chainexposed._download(url, **kwargs)
+        data = scraper.chainexposed._download(url)
     elif url.startswith(BITBO_BASE_URL):
-        data = scraper.bitbo._download(url, **kwargs)
+        data = scraper.bitbo._download(url)
     elif url.startswith(WOOCHARTS_BASE_URL):
-        data = scraper.woocharts._download(url, **kwargs)
+        data = scraper.woocharts._download(url)
     elif url.startswith(CRYPTOQUANT_BASE_URL):
         data = scraper.cryptoquant._download(url, **kwargs)
+    elif url.startswith(BITCOINMAGAZINEPRO_BASE_URL):
+        data = scraper.bitcoinmagazinepro._download(url)
     else:
         raise ValueError("URL does not match any known source. Find the list of supported websites here: https://github.com/dhruvan2006/ocfinance/blob/main/README.md")
     

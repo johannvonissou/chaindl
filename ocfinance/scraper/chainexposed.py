@@ -4,10 +4,10 @@ import json
 import pandas as pd
 from bs4 import BeautifulSoup
 
-from .utils import _get_page_content
+from . import utils
 
 def _download(url):
-    content = _get_page_content(url)
+    content = utils._get_page_content(url)
     soup = BeautifulSoup(content, 'html.parser')
     scripts = soup.find_all('script')
 
@@ -28,7 +28,7 @@ def _extract_data_from_scripts(scripts):
                 x = json.loads(x_data)
                 y = json.loads(y_data)
 
-                df = pd.DataFrame({ name: pd.to_numeric(y, errors='coerce') }, index=pd.to_datetime(x).date)
+                df = pd.DataFrame({ name: pd.to_numeric(y, errors='coerce') }, index=pd.to_datetime(pd.to_datetime(x).date))
                 df.index.name = 'Date'
                 dfs.append(df)
 

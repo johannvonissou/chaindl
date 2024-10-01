@@ -86,7 +86,7 @@ git clone https://github.com/dhruvan2006/ocfinance
 ```
 2. Install the required packages
 ```bash
-pip install pytest dotenv
+pip install -r requirements.txt
 ```
 3. Run the tests
 ```bash

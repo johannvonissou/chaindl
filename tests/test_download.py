@@ -3,13 +3,17 @@ import pytest
 from unittest.mock import patch
 from ocfinance import download
 
+mocked_data_with_dates = pd.DataFrame({
+    'data': [1, 2, 3, 4, 5]
+}, index=pd.date_range(start='2023-01-01', periods=5))
+
 mocked_data = {
-    "checkonchain": pd.DataFrame({'data': [1, 2, 3]}),
-    "chainexposed": pd.DataFrame({'data': [4, 5, 6]}),
-    "bitbo": pd.DataFrame({'data': [7, 8, 9]}),
-    "woocharts": pd.DataFrame({'data': [10, 11, 12]}),
-    "cryptoquant": pd.DataFrame({'data': [13, 14, 15]}),
-    "bitcoinmagazinepro": pd.DataFrame({'data': [16, 17, 18]})
+    "checkonchain": mocked_data_with_dates,
+    "chainexposed": mocked_data_with_dates,
+    "bitbo": mocked_data_with_dates,
+    "woocharts": mocked_data_with_dates,
+    "cryptoquant": mocked_data_with_dates,
+    "bitcoinmagazinepro": mocked_data_with_dates
 }
 
 @pytest.mark.parametrize("url, expected_data, provider", [
@@ -29,3 +33,17 @@ def test_download_invalid_url():
     invalid_url = "https://unknownsource.com/some_data"
     with pytest.raises(ValueError, match="URL does not match any known source"):
         download(invalid_url)
+
+
+@pytest.mark.parametrize("url, start, end, expected_data", [
+    ("https://charts.checkonchain.com/some_data", '2023-01-02', '2023-01-04', 
+     pd.DataFrame({'data': [2, 3, 4]}, index=pd.date_range(start='2023-01-02', periods=3))),
+    ("https://charts.checkonchain.com/some_data", '2023-01-01', None, 
+     pd.DataFrame({'data': [1, 2, 3, 4, 5]}, index=pd.date_range(start='2023-01-01', periods=5))),
+    ("https://charts.checkonchain.com/some_data", None, '2023-01-03', 
+     pd.DataFrame({'data': [1, 2, 3]}, index=pd.date_range(start='2023-01-01', periods=3))),
+])
+def test_download_date_filtration(url, start, end, expected_data):
+    with patch('ocfinance.scraper.checkonchain._download', return_value=mocked_data["checkonchain"]):
+        result = download(url, start=start, end=end)
+        pd.testing.assert_frame_equal(result, expected_data)

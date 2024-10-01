@@ -4,7 +4,34 @@ from . import scraper
 
 def download(url, start=None, end=None, **kwargs):
     """
-    Downloads the data from the given URL and returns a pandas DataFrame.
+    Downloads cryptocurrency data from the specified URL and returns it as a pandas DataFrame.
+
+    This function supports various data sources and handles specific URLs to retrieve data from each.
+
+    Args:
+        url (str): The URL from which to download the data. It must match one of the known data sources.
+        start (str, optional): The start date for slicing the DataFrame. Must be in a format recognized by pandas (e.g., 'YYYY-MM-DD').
+        end (str, optional): The end date for slicing the DataFrame. Must be in a format recognized by pandas (e.g., 'YYYY-MM-DD').
+        **kwargs: Additional keyword arguments to pass to specific scraper methods.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the downloaded data. The DataFrame index is datetime.
+
+    Raises:
+        ValueError: If the provided URL does not match any known data sources.
+
+    Supported Data Sources:
+        - CheckOnChain: "https://charts.checkonchain.com"
+        - ChainExposed: "https://chainexposed.com"
+        - BitBo: "https://charts.bitbo.io"
+        - WooCharts: "https://woocharts.com"
+        - CryptoQuant: "https://cryptoquant.com"
+        - Bitcoin Magazine Pro: "https://www.bitcoinmagazinepro.com"
+
+    Example:
+        >>> df = download("https://charts.checkonchain.com/path/to/indicator")
+        >>> df_filtered = download("https://charts.checkonchain.com/path/to/indicator", start='2023-01-01', end='2023-12-31')
+        >>> cryptoquant = download("https://cryptoquant.com/path/to/indicator", email=email, password=password)
     """
     CHECKONCHAIN_BASE_URL = "https://charts.checkonchain.com"
     CHAINEXPOSED_BASE_URL = "https://chainexposed.com"
@@ -30,4 +57,10 @@ def download(url, start=None, end=None, **kwargs):
     else:
         raise ValueError("URL does not match any known source. Find the list of supported websites here: https://github.com/dhruvan2006/ocfinance/blob/main/README.md")
     
+    if pd.api.types.is_datetime64_any_dtype(data.index):
+        if start:
+            data = data.loc[start:]
+        if end:
+            data = data.loc[:end]
+
     return data

@@ -31,22 +31,22 @@ import ocfinance as of
 # Download the data from the specified URL
 data = of.download("https://charts.checkonchain.com/btconchain/pricing/pricing_picycleindicator/pricing_picycleindicator_light.html")
 
-# Filter by dates (Pass dates in YYYY-mm-dd format)
-filtered = of.download(
-    "https://charts.checkonchain.com/btconchain/pricing/pricing_picycleindicator/pricing_picycleindicator_light.html",
-    start='2023-01-01',
-    end='2023-12-31'
-)
-
 # Usage examples
 # Export as CSV
 data.to_csv('out.csv')
 
 # Plot
 data.plot()
+```
 
-# Print a column
-print(data['Price'])
+#### Advanced usage
+```python
+# Filter by dates (Pass dates in YYYY-mm-dd format)
+filtered = of.download(
+    "https://charts.checkonchain.com/btconchain/pricing/pricing_picycleindicator/pricing_picycleindicator_light.html",
+    start='2023-01-01',
+    end='2023-12-31'
+)
 ```
 
 ## Cryptoquant guide

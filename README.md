@@ -45,7 +45,7 @@ data = of.download(
     password=password
 )
 ```
-The  url that needs to be passed can be access like so:
+The url that needs to be passed can be accessed by clicking the source button and copying that url (follow the images):
 
 ![Click the source button](/assets/cryptoquant_step1.png)
 ![Copy the url](/assets/cryptoquant_step2.png)

@@ -44,7 +44,7 @@ def _create_dataframe(results, column_names):
     return df
 
 def _get_json(id, email, password):
-    with SB(uc=True, browser="chrome", wire=True) as sb:
+    with SB(uc=True, browser="chrome") as sb:
         sb.uc_open_with_reconnect(CRYPTOQUANT_URL, 4)
         sb.uc_gui_click_captcha()
 

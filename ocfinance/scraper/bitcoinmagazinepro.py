@@ -12,7 +12,7 @@ def _download(url):
 def _create_dataframes(traces):
     dfs = []
     for trace in traces:
-        if 'customdata' in trace:
+        # if 'customdata' in trace:
             name = trace['name']
             x = trace['x']
             y = trace['y']
@@ -21,7 +21,8 @@ def _create_dataframes(traces):
             x = x[:length]
             y = y[:length]
 
-            df = pd.DataFrame({ name: pd.to_numeric(y, errors='coerce') }, index=pd.to_datetime(x, format='mixed').date)
+            df = pd.DataFrame({ name: pd.to_numeric(y, errors='coerce') }, index=pd.to_datetime(pd.to_datetime(x, format='mixed').date))
+            df = df[~df.index.duplicated(keep='first')]
             df.index.name = 'Date'
             dfs.append(df)
 

@@ -49,3 +49,14 @@ The url that needs to be passed can be accessed by clicking the source button an
 
 ![Click the source button](/assets/cryptoquant_step1.png)
 ![Copy the url](/assets/cryptoquant_step2.png)
+
+## Running tests
+#### Optional
+To run integration test for cryptoquant, add your cryptoquant account's email and password to .env.sample. Rename the file into .env. These tests will be otherwise be skipped
+
+#### Run
+```bash
+git clone https://github.com/dhruvan2006/ocfinance
+pip install pytest dotenv
+pytest
+```

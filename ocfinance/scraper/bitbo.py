@@ -23,7 +23,7 @@ def _download(url):
 
 def _get_script_content(url):
     script_content = ""
-    with SB(uc=True, browser="chrome") as sb:
+    with SB(uc=True) as sb:
         sb.uc_open_with_reconnect(url, 4)
         sb.uc_gui_click_captcha()
 

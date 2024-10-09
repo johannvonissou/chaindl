@@ -29,7 +29,7 @@ def _create_dataframes(traces):
     return dfs
 
 def _intercept_network_requests(url):
-    with SB(uc=True, browser="chrome") as sb:
+    with SB(uc=True) as sb:
         sb.uc_open_with_reconnect(url, 4)
         sb.uc_gui_click_captcha()
 

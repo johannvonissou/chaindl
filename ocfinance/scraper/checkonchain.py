@@ -15,7 +15,7 @@ def _download(url):
 
     merged_df = pd.concat(dfs, axis=1, join='outer')
     return merged_df
-    
+
 def _extract_data_from_scripts(scripts):
     dfs = []
     for script in scripts:
@@ -27,9 +27,9 @@ def _extract_data_from_scripts(scripts):
                 x = json.loads(x_data)
                 y = json.loads(y_data)
 
-                df = pd.DataFrame({ name: pd.to_numeric(y, errors='coerce') }, index=pd.to_datetime(pd.to_datetime(x).date))
+                df = pd.DataFrame({ name: pd.to_numeric(y, errors='coerce') }, index=pd.to_datetime(pd.to_datetime(x, format='mixed').date))
                 df.index.name = 'Date'
                 df = df.loc[~df.index.duplicated(keep='first')] # TODO: Give user option to either choose drop dupes or take avg
                 dfs.append(df)
-    
+
     return dfs

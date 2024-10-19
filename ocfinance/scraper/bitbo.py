@@ -1,13 +1,17 @@
 import re
 import json
 import time
-
 import pandas as pd
+
+from selenium.webdriver import Remote, ChromeOptions
+from selenium.webdriver.chromium.remote_connection import ChromiumRemoteConnection
+from selenium.webdriver.common.by import By
+
 from seleniumbase import SB
 from selenium.common.exceptions import StaleElementReferenceException
 
-def _download(url):
-    content = _get_script_content(url)
+def _download(url, **kwargs):
+    content = _get_script_content(url, **kwargs)
     traces = _get_traces(content)
 
     dfs = []
@@ -21,7 +25,36 @@ def _download(url):
     merged_df = pd.concat(dfs, axis=1, join='outer')
     return merged_df
 
-def _get_script_content(url):
+def _get_script_content(url, **kwargs):
+    sbr_webdriver = kwargs.get('sbr_webdriver')
+    if sbr_webdriver:
+        return _get_script_content_brightdata(url, sbr_webdriver)
+    else:
+        return _get_script_content_seleniumbase(url)
+
+def _get_script_content_brightdata(url, sbr_webdriver):
+    sbr_connection = ChromiumRemoteConnection(sbr_webdriver, 'goog', 'chrome')
+    with Remote(sbr_connection, options=ChromeOptions()) as driver:
+        driver.get(url)
+
+        # CAPTCHA handling: If you're expecting a CAPTCHA on the target page, use the following code snippet to check the status of Scraping Browser's automatic CAPTCHA solver
+        print('Waiting captcha to solve...')
+        solve_res = driver.execute('executeCdpCommand', {
+            'cmd': 'Captcha.waitForSolve',
+            'params': {'detectTimeout': 20000},
+        })
+        print('Captcha solve status:', solve_res['value']['status'])
+
+        script_content = ""
+        script_tags = driver.find_elements(By.TAG_NAME, 'script')
+        for script_tag in script_tags:
+            script_inner_html = script_tag.get_attribute("innerHTML")
+            if script_inner_html and 'trace' in script_inner_html:
+                script_content += script_inner_html
+    
+    return script_content
+
+def _get_script_content_seleniumbase(url):
     script_content = ""
     with SB(uc=True) as sb:
         sb.uc_open_with_reconnect(url, 4)

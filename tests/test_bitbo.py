@@ -1,6 +1,12 @@
+import os
 import pytest
 import pandas as pd
+from dotenv import load_dotenv
 from ocfinance.scraper.bitbo import _get_traces, _get_data, _download
+
+load_dotenv()
+
+sbr_webdriver = os.getenv('SBR_WEBDRIVER')
 
 content = """
     var axis_x = ["2020-10-20","2020-10-21","2020-10-22"];
@@ -66,8 +72,24 @@ def test_download_data(monkeypatch):
         ['Price', 'MACD', 'Signal line']
     )
 ])
-def test_bitbo_download(url, expected_columns):
+def test_bitbo_download_sb(url, expected_columns):
     data = _download(url)
+
+    assert isinstance(data, pd.DataFrame)
+    assert isinstance(data.index, pd.DatetimeIndex)
+    assert all(data.dtypes == float)
+
+    assert all(col in data.columns for col in expected_columns)
+
+@pytest.mark.skipif(not sbr_webdriver, reason="Skipping Bitbo integration tests: SBR_WEBDRIVER not provided.")
+@pytest.mark.parametrize("url, expected_columns", [
+    (
+        "https://charts.bitbo.io/cycle-repeat/",
+        ['MA1458d', 'MA200d', 'Price end of day']
+    ),
+])
+def test_bitbo_download_brightdata(url, expected_columns):
+    data = _download(url, sbr_webdriver=sbr_webdriver)
 
     assert isinstance(data, pd.DataFrame)
     assert isinstance(data.index, pd.DatetimeIndex)

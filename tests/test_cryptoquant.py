@@ -40,7 +40,7 @@ def test_create_dataframe(sample_results, sample_columns):
 
     pd.testing.assert_frame_equal(df, expected_df)
 
-@pytest.mark.skipif(not email or not password, reason="Skipping integration tests: Email and/or password not provided.")
+@pytest.mark.skipif(not email or not password, reason="Skipping cryptoquant integration tests: Email and/or password not provided.")
 @pytest.mark.parametrize("url, expected_columns", [
     (
         "https://cryptoquant.com/analytics/query/66636764d376670a9fe4c3f4?v=66636764d376670a9fe4c3f6",

@@ -12,7 +12,9 @@ def download(url, start=None, end=None, **kwargs):
         url (str): The URL from which to download the data. It must match one of the known data sources.
         start (str, optional): The start date for slicing the DataFrame. Must be in a format recognized by pandas (e.g., 'YYYY-MM-DD').
         end (str, optional): The end date for slicing the DataFrame. Must be in a format recognized by pandas (e.g., 'YYYY-MM-DD').
-        **kwargs: Additional keyword arguments to pass to specific scraper methods.
+        **kwargs: Additional keyword arguments to pass to specific scraper methods.\n
+            email and password needs to be passed for Cryptoquant\n
+            sbr_webdriver needs to be passed for using a remote browser proxy (Eg: BrightData, etc.)
 
     Returns:
         pd.DataFrame: A DataFrame containing the downloaded data. The DataFrame index is datetime.
@@ -47,13 +49,13 @@ def download(url, start=None, end=None, **kwargs):
     elif url.startswith(CHAINEXPOSED_BASE_URL):
         data = scraper.chainexposed._download(url)
     elif url.startswith(BITBO_BASE_URL):
-        data = scraper.bitbo._download(url)
+        data = scraper.bitbo._download(url, **kwargs)
     elif url.startswith(WOOCHARTS_BASE_URL):
         data = scraper.woocharts._download(url)
     elif url.startswith(CRYPTOQUANT_BASE_URL):
         data = scraper.cryptoquant._download(url, **kwargs)
     elif url.startswith(BITCOINMAGAZINEPRO_BASE_URL):
-        data = scraper.bitcoinmagazinepro._download(url)
+        data = scraper.bitcoinmagazinepro._download(url, **kwargs)
     else:
         raise ValueError("URL does not match any known source. Find the list of supported websites here: https://github.com/dhruvan2006/ocfinance/blob/main/README.md")
     

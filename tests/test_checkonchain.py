@@ -33,7 +33,7 @@ def test_checkonchain_mocked(monkeypatch):
         }]);
         </script>
         """
-    
+
     monkeypatch.setattr(utils, "_get_page_content", mock_get_page_content)
 
     url = "https://charts.checkonchain.com/test"
@@ -48,12 +48,12 @@ def test_checkonchain_mocked(monkeypatch):
 
 @pytest.mark.parametrize("url, expected_columns", [
     (
-        "https://charts.checkonchain.com/btconchain/pricing/pricing_onchainoriginals/pricing_onchainoriginals_light.html",
-        ['Price', 'True Mean Price', 'Realised Price', 'Cointime Price', 'Balanced Price', 'Delta Price', 'Vaulted Price', 'MVRV Mean+1sd']
-    ),
-    (
         "https://charts.checkonchain.com/btconchain/pricing/pricing_mayermultiple_zscore/pricing_mayermultiple_zscore_light.html",
         ['Mayer Multiple Z', '200DMA', 'Price', '1.5sd', '1.0sd', '-1.0sd', '-1.5sd']
+    ),
+    (
+        "https://charts.checkonchain.com/btconchain/realised/sopr/sopr_light.html",
+        ['Price', 'Spent Output Profit Ratio (SOPR)', 'SOPR 7D-EMA']
     )
 ])
 def test_real_checkonchain_download(url, expected_columns):
@@ -64,3 +64,4 @@ def test_real_checkonchain_download(url, expected_columns):
     assert all(data.dtypes == float)
 
     assert all(col in data.columns for col in expected_columns)
+

@@ -3,14 +3,10 @@ import json
 import pandas as pd
 from seleniumwire import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
 from seleniumwire.utils import decode
 
-def _download(url):
-    data = _intercept_network_requests(url)
+def _download(url, **kwargs):
+    data = _intercept_network_requests(url, **kwargs)
     traces = data['response']['chart']['figure']['data']
     dfs = _create_dataframes(traces)
     merged_df = pd.concat(dfs, axis=1, join='outer')
@@ -35,7 +31,7 @@ def _create_dataframes(traces):
 
     return dfs
 
-def _intercept_network_requests(url, check_interval=0.5, timeout=20):
+def _intercept_network_requests(url, check_interval=0.5, timeout=30):
     # Set up Chrome options for headless mode
     chrome_options = Options()
     chrome_options.add_argument('--headless')  # Enable headless mode
@@ -65,4 +61,4 @@ def _intercept_network_requests(url, check_interval=0.5, timeout=20):
         return json.loads(body)
     else:
         driver.quit()
-        raise TimeoutError(f"Could not find the request within {timeout} seconds.")
+        raise TimeoutError(f"Could not find the request within {timeout} seconds. Try increasing the timeout!")

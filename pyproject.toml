@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ocfinance"
-version = "0.0.6"
+version = "0.0.7"
 authors = [
   { name="Dhruvan Gnanadhandayuthapani", email="dhruvan2006@gmail.com" },
 ]
@@ -21,7 +21,9 @@ dependencies = [
     "pandas",
     "beautifulsoup4",
     "seleniumbase",
-    "selenium"
+    "selenium",
+    "selenium-wire",
+    "blinker==1.7.0"
 ]
 
 [project.urls]

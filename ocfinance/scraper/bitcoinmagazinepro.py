@@ -1,6 +1,13 @@
+import time
 import json
 import pandas as pd
-from seleniumbase import SB
+from seleniumwire import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from seleniumwire.utils import decode
 
 def _download(url):
     data = _intercept_network_requests(url)
@@ -28,34 +35,34 @@ def _create_dataframes(traces):
 
     return dfs
 
-def _intercept_network_requests(url):
-    with SB(uc=True) as sb:
-        sb.uc_open_with_reconnect(url, 4)
-        sb.uc_gui_click_captcha()
+def _intercept_network_requests(url, check_interval=0.5, timeout=20):
+    # Set up Chrome options for headless mode
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')  # Enable headless mode
+    chrome_options.add_argument('--disable-gpu')  # Disable GPU for compatibility
+    chrome_options.add_argument('--no-sandbox')  # Bypass OS security model
 
-        sb.refresh()
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.get(url)
 
-        response = sb.execute_async_script("""
-            var callback = arguments[arguments.length - 1];
-            const originalFetch = window.fetch;
+    start_time = time.time()
+    request = None
 
-            window.fetch = function(...args) {
-                return originalFetch.apply(this, args).then(response => {
-                    const clonedResponse = response.clone();
+    while time.time() - start_time < timeout:
+        for req in driver.requests:
+            if "_dash-update-component" in req.url and req.response:
+                request = req
+                break
+        if request:
+            break
+        time.sleep(check_interval)
 
-                    clonedResponse.text().then(text => {
-                        // Check if the last part of the URL is _dash-update-component
-                        const urlParts = args[0].split('/');
-                        const lastPart = urlParts[urlParts.length - 1];
-
-                        if (lastPart === '_dash-update-component') {
-                            callback(text);
-                        }
-                    });
-
-                    return response;
-                });
-            };
-        """)
-
-        return json.loads(response)
+    if request:
+        content_encoding = request.response.headers.get('Content-Encoding', '')
+        body = decode(request.response.body, content_encoding)
+        body = body.decode('utf-8', errors='ignore')
+        driver.quit()
+        return json.loads(body)
+    else:
+        driver.quit()
+        raise TimeoutError(f"Could not find the request within {timeout} seconds.")

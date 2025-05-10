@@ -63,7 +63,7 @@ def _get_json(driver, id, email, password):
 
     # Execute the login request
     script = f"""
-        return fetch("https://live-api.cryptoquant.com/api/v1/sign-in", {{
+        return fetch("https://api.cryptoquant.com/live/v1/sign-in", {{
             method: 'POST',
             headers: {{
                 'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ def _get_json(driver, id, email, password):
     if 'accessToken' in response:
         access_token = response['accessToken']
 
-        data_url = f"https://live-api.cryptoquant.com/api/v1/analytics/{id}"
+        data_url = f"https://api.cryptoquant.com/live/v1/analytics/{id}"
         
         result_script = f"""
             return fetch("{data_url}", {{

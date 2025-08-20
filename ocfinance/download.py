@@ -29,6 +29,7 @@ def download(url, start=None, end=None, **kwargs):
         - WooCharts: "https://woocharts.com"
         - CryptoQuant: "https://cryptoquant.com"
         - Bitcoin Magazine Pro: "https://www.bitcoinmagazinepro.com"
+        - Blockchain.com: "https://www.blockchain.com/explorer/charts"
 
     Example:
         >>> df = download("https://charts.checkonchain.com/path/to/indicator")
@@ -41,6 +42,7 @@ def download(url, start=None, end=None, **kwargs):
     WOOCHARTS_BASE_URL = "https://woocharts.com"
     CRYPTOQUANT_BASE_URL = "https://cryptoquant.com"
     BITCOINMAGAZINEPRO_BASE_URL = "https://www.bitcoinmagazinepro.com"
+    BLOCKCHAIN_BASE_URL = "https://www.blockchain.com/explorer/charts"
 
     data = pd.DataFrame()
 
@@ -56,6 +58,8 @@ def download(url, start=None, end=None, **kwargs):
         data = scraper.cryptoquant._download(url, **kwargs)
     elif url.startswith(BITCOINMAGAZINEPRO_BASE_URL):
         data = scraper.bitcoinmagazinepro._download(url, **kwargs)
+    elif url.startswith(BLOCKCHAIN_BASE_URL):
+        data = scraper.blockchain._download(url, **kwargs)
     else:
         raise ValueError("URL does not match any known source. Find the list of supported websites here: https://github.com/dhruvan2006/ocfinance/blob/main/README.md")
     

@@ -13,6 +13,7 @@ dist/
 downloaded_files/
 latest_logs/
 .vscode/
+.idea/
 .env
 
 #Testing

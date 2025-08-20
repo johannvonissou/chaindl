@@ -21,6 +21,7 @@ pip install ocfinance
 - [Cryptoquant](https://cryptoquant.com/) (_follow the guide below_)
 - [Bitbo Charts](https://charts.bitbo.io/)
 - [Bitcoin Magazine Pro](https://www.bitcoinmagazinepro.com)
+- [Blockchain.com](https://www.blockchain.com/explorer/charts)
 
 ## Usage
 To download the data of a chart, simply obtain the URL and pass it to the download function

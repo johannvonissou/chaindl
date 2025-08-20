@@ -28,4 +28,6 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/dhruvan2006/ocfinance"
+Documentation = "https://ocfinance.readthedocs.io/"
+PyPI = "https://pypi.org/project/ocfinance/"
 Issues = "https://github.com/dhruvan2006/ocfinance/issues"

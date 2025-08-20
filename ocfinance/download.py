@@ -61,7 +61,7 @@ def download(url, start=None, end=None, **kwargs):
     elif url.startswith(BLOCKCHAIN_BASE_URL):
         data = scraper.blockchain._download(url, **kwargs)
     else:
-        raise ValueError("URL does not match any known source. Find the list of supported websites here: https://github.com/dhruvan2006/ocfinance/blob/main/README.md")
+        raise ValueError("Unsupported source. Find the list of supported websites here: https://github.com/dhruvan2006/ocfinance/blob/main/README.md")
     
     if pd.api.types.is_datetime64_any_dtype(data.index):
         if start:

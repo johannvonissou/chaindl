@@ -1,4 +1,10 @@
-# ocfinance (Works with Cryptoquant)
+# ocfinance
+
+[![Build Passing](https://github.com/dhruvan2006/ocfinance/actions/workflows/release.yml/badge.svg)](https://github.com/dhruvan2006/ocfinance/actions/workflows/release.yml)
+[![Tests Passing](https://github.com/dhruvan2006/ocfinance/actions/workflows/tests.yml/badge.svg)](https://github.com/dhruvan2006/ocfinance/actions/workflows/tests.yml)
+[![PyPI - Version](https://img.shields.io/pypi/v/ocfinance)](https://pypi.org/project/ocfinance/)
+[![PyPI Downloads](https://static.pepy.tech/badge/ocfinance)](https://pypi.org/project/ocfinance/)
+[![GitHub License](https://img.shields.io/github/license/dhruvan2006/ocfinance)](https://github.com/dhruvan2006/ocfinance)
 
 `ocfinance` is a python package that enables you to download on-chain data from various sources, including Cryptoquant, CheckOnChain, etc.
 

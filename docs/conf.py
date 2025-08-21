@@ -2,6 +2,7 @@
 #
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
+import importlib.metadata
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -9,7 +10,7 @@
 project = 'ocfinance'
 copyright = '2025, Dhruvan Gnanadhandayuthapani'
 author = 'Dhruvan Gnanadhandayuthapani'
-release = '0.0.11'
+release = '0.0.12'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

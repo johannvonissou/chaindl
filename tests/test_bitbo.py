@@ -60,8 +60,9 @@ def test_download_data(monkeypatch):
     result_df = _download('test_url')
 
     pd.testing.assert_frame_equal(result_df, expected_df)
-    
 
+
+@pytest.mark.skipif(not sbr_webdriver, reason="Skipping Bitbo integration tests: SBR_WEBDRIVER not provided.")
 @pytest.mark.parametrize("url, expected_columns", [
     (
         "https://charts.bitbo.io/cycle-repeat/",

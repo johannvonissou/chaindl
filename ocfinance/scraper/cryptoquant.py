@@ -7,6 +7,11 @@ import pandas as pd
 CRYPTOQUANT_URL = "https://cryptoquant.com/"
 
 def _download(url, **kwargs):
+    email = kwargs.get('email')
+    password = kwargs.get('password')
+    if not email or not password:
+        raise TypeError("Email and/or password hasn't been passed")
+
     splits = urlparse(url).path.split('/')
     id = splits[-1]
 
@@ -17,10 +22,6 @@ def _download(url, **kwargs):
     proxy = kwargs.get('proxy', None)
     driver = _get_driver(proxy=proxy)
 
-    email = kwargs.get('email')
-    password = kwargs.get('password')
-    if not email or not password:
-        raise TypeError("Email and/or password hasn't been passed")
     data = _get_json(driver, id, email, password)
 
     columns = data['data']['result']['columns']

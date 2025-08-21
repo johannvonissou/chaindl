@@ -1,8 +1,27 @@
-Welcome to ocfinance's documentation!
-=====================================
+==================
+ocfinance
+==================
 
-Ocfinance is a lightweight Python library that helps developers and analysts download crypto market data directly from
-supported public sources using just a URL.
+**Download crypto on-chain data with a single line of code.**
+
+.. image:: https://github.com/dhruvan2006/ocfinance/actions/workflows/release.yml/badge.svg
+    :target: https://github.com/dhruvan2006/ocfinance/actions/workflows/release.yml
+
+.. image:: https://github.com/dhruvan2006/ocfinance/actions/workflows/tests.yml/badge.svg
+    :target: https://github.com/dhruvan2006/ocfinance/actions/workflows/tests.yml
+
+.. image:: https://img.shields.io/pypi/v/ocfinance
+    :target: https://pypi.org/project/ocfinance/
+
+.. image:: https://static.pepy.tech/badge/ocfinance
+    :target: https://pypi.org/project/ocfinance/
+
+.. image:: https://img.shields.io/github/license/dhruvan2006/ocfinance
+    :target: https://github.com/dhruvan2006/ocfinance
+
+Ocfinance is a lightweight Python library that lets you fetch historical and live on-chain crypto data
+from multiple public sources in one step. Whether you want to analyze metrics from Bitcoin, Ethereum,
+or other chains, ocfinance handles the heavy lifting so you can focus on insights.
 
 It supports:
 
@@ -25,7 +44,7 @@ Install using pip:
 
     pip install ocfinance
 
-You will need Python 3.8 or higher to use this package.
+You will need Python 3 to use this package.
 
 ---
 
@@ -148,8 +167,6 @@ Example:
 
 Blockchain.com (`blockchain.com <https://www.blockchain.com/explorer/charts/>`__)
 ---------------------------------------------------------------------------------
-
-TODO: timeframe, etc.
 
 Example:
 

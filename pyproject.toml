@@ -12,7 +12,7 @@ version = "0.0.12"
 authors = [
   { name="Dhruvan Gnanadhandayuthapani", email="dhruvan2006@gmail.com" },
 ]
-description = "Download on-chain data for bitcoin (works for cryptoquant)"
+description = "Download crypto on-chain data with a single line of code "
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"

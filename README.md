@@ -1,18 +1,25 @@
 # ocfinance
 
+**Download crypto on-chain data with a single line of code.**
+
 [![Build Passing](https://github.com/dhruvan2006/ocfinance/actions/workflows/release.yml/badge.svg)](https://github.com/dhruvan2006/ocfinance/actions/workflows/release.yml)
 [![Tests Passing](https://github.com/dhruvan2006/ocfinance/actions/workflows/tests.yml/badge.svg)](https://github.com/dhruvan2006/ocfinance/actions/workflows/tests.yml)
 [![PyPI - Version](https://img.shields.io/pypi/v/ocfinance)](https://pypi.org/project/ocfinance/)
 [![PyPI Downloads](https://static.pepy.tech/badge/ocfinance)](https://pypi.org/project/ocfinance/)
 [![GitHub License](https://img.shields.io/github/license/dhruvan2006/ocfinance)](https://github.com/dhruvan2006/ocfinance)
 
-`ocfinance` is a python package that enables you to download on-chain data from various sources, including Cryptoquant, CheckOnChain, etc.
+`ocfinance` is a lightweight Python library that lets you fetch historical and live on-chain crypto data from multiple 
+public sources in one step. Whether you want to analyze metrics from Bitcoin, Ethereum, or other chains, `ocfinance` 
+handles the heavy lifting so you can focus on insights.
 
-## Features
-- **Easy Data Download**: Download on-chain data from various sources with a single line of code.
-- **CSV Export**: Save data as CSV files for easy analysis in Excel or other tools.
-- **Pandas Integration**: Work with data directly as a pandas DataFrame for simple manipulation and analysis.
-- **Customizable Queries**: Specify start and end date parameters.
+## Why Use `ocfinance`?
+
+- **Fetch crypto on-chain data in one line** – no need for API keys or complicated setups.  
+- **Fully free** – all functionality is available without subscription or payment.  
+- **Ready for analysis** – data comes back as a `pandas.DataFrame`, so you can immediately manipulate, visualize, or model it.  
+- **Save and share** – easily export data as CSV for offline use, Excel, or reporting.  
+- **Multiple sources supported** – from Cryptoquant to CheckOnChain, get all your metrics without juggling different platforms.  
+- **Focus on insights, not boilerplate** – `ocfinance` handles parsing and formatting, so you spend less time on setup.
 
 ## Documentation: [https://ocfinance.readthedocs.io/](https://ocfinance.readthedocs.io/)
 
@@ -40,15 +47,14 @@ To download the data of a chart, simply obtain the URL and pass it to the downlo
 ```python
 import ocfinance as of
 
-# Download the data from the specified URL
+# Download data from a URL
 data = of.download("https://charts.checkonchain.com/btconchain/pricing/pricing_picycleindicator/pricing_picycleindicator_light.html")
 
-# Usage examples
-# Export as CSV
+# Export to CSV
 data.to_csv('out.csv')
 
-# Plot
+# Quick Plot
 data.plot()
 ```
 
-For detailed usage instructions, including how to work with Cryptoquant data and advanced features, please refer to our [documentation](https://ocfinance.readthedocs.io/).
+For advanced usage and examples with Cryptoquant and other sources, see the [documentation](https://ocfinance.readthedocs.io/).

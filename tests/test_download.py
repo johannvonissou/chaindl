@@ -31,7 +31,7 @@ def test_download_valid_urls(url, expected_data, provider):
     
 def test_download_invalid_url():
     invalid_url = "https://unknownsource.com/some_data"
-    with pytest.raises(ValueError, match="URL does not match any known source"):
+    with pytest.raises(ValueError, match="Unsupported source"):
         download(invalid_url)
 
 

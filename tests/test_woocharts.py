@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 from unittest.mock import Mock
 
-from ocfinance.scraper.woocharts import _request_chart_json, _download
+from chaindl.scraper.woocharts import _request_chart_json, _download
 
 @pytest.fixture
 def mock_response():

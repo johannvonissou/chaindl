@@ -1,5 +1,5 @@
 import pytest
-from ocfinance.scraper.utils import _join_url
+from chaindl.scraper.utils import _join_url
 
 @pytest.mark.parametrize(
     "base_url, path, expected", [

@@ -2,7 +2,7 @@ import os
 import pytest
 import pandas as pd
 from dotenv import load_dotenv
-from ocfinance.scraper.bitbo import _get_traces, _get_data, _download
+from chaindl.scraper.bitbo import _get_traces, _get_data, _download
 
 load_dotenv()
 
@@ -54,7 +54,7 @@ def test_download_data(monkeypatch):
     }, index=pd.to_datetime(["2020-10-20","2020-10-21","2020-10-22"]))
     expected_df.index.name = 'Date'
 
-    import ocfinance.scraper.bitbo as bitbo
+    import chaindl.scraper.bitbo as bitbo
     monkeypatch.setattr(bitbo, '_get_script_content', lambda url: content)
 
     result_df = _download('test_url')

@@ -1,8 +1,8 @@
 import pytest
 import pandas as pd
-from ocfinance.scraper.chainexposed import _download
-from ocfinance.scraper.chainexposed import _extract_data_from_scripts
-from ocfinance.scraper import utils
+from chaindl.scraper.chainexposed import _download
+from chaindl.scraper.chainexposed import _extract_data_from_scripts
+from chaindl.scraper import utils
 
 def test_extract_data_from_scripts():
     scripts = [

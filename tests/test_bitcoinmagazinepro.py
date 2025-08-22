@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
 from unittest.mock import patch, MagicMock
-from ocfinance.scraper.bitcoinmagazinepro import _download, _create_dataframes, _intercept_network_requests
+from chaindl.scraper.bitcoinmagazinepro import _download, _create_dataframes, _intercept_network_requests
 
 @pytest.fixture
 def mock_data():

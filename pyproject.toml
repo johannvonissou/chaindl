@@ -3,12 +3,12 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["ocfinance*"]
+include = ["chaindl*"]
 exclude = ["assets*"]
 
 [project]
-name = "ocfinance"
-version = "0.0.12"
+name = "chaindl"
+version = "0.1.0"
 authors = [
   { name="Dhruvan Gnanadhandayuthapani", email="dhruvan2006@gmail.com" },
 ]
@@ -32,7 +32,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/dhruvan2006/ocfinance"
-Documentation = "https://ocfinance.readthedocs.io/"
-PyPI = "https://pypi.org/project/ocfinance/"
-Issues = "https://github.com/dhruvan2006/ocfinance/issues"
+Homepage = "https://github.com/dhruvan2006/chaindl"
+Documentation = "https://chaindl.readthedocs.io/"
+PyPI = "https://pypi.org/project/chaindl/"
+Issues = "https://github.com/dhruvan2006/chaindl/issues"

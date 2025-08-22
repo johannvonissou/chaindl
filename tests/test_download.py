@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 from unittest.mock import patch
-from ocfinance import download
+from chaindl import download
 
 mocked_data_with_dates = pd.DataFrame({
     'data': [1, 2, 3, 4, 5]
@@ -25,7 +25,7 @@ mocked_data = {
     ("https://www.bitcoinmagazinepro.com/some_data", mocked_data["bitcoinmagazinepro"], "bitcoinmagazinepro"),
 ])
 def test_download_valid_urls(url, expected_data, provider):
-    with patch(f'ocfinance.scraper.{provider}._download', return_value=expected_data):
+    with patch(f'chaindl.scraper.{provider}._download', return_value=expected_data):
         result = download(url)
         pd.testing.assert_frame_equal(result, expected_data)
     
@@ -44,6 +44,6 @@ def test_download_invalid_url():
      pd.DataFrame({'data': [1, 2, 3]}, index=pd.date_range(start='2023-01-01', periods=3))),
 ])
 def test_download_date_filtration(url, start, end, expected_data):
-    with patch('ocfinance.scraper.checkonchain._download', return_value=mocked_data["checkonchain"]):
+    with patch('chaindl.scraper.checkonchain._download', return_value=mocked_data["checkonchain"]):
         result = download(url, start=start, end=end)
         pd.testing.assert_frame_equal(result, expected_data)

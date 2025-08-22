@@ -1,27 +1,27 @@
 ==================
-ocfinance
+chaindl
 ==================
 
 **Download crypto on-chain data with a single line of code.**
 
-.. image:: https://github.com/dhruvan2006/ocfinance/actions/workflows/release.yml/badge.svg
-    :target: https://github.com/dhruvan2006/ocfinance/actions/workflows/release.yml
+.. image:: https://github.com/dhruvan2006/chaindl/actions/workflows/release.yml/badge.svg
+    :target: https://github.com/dhruvan2006/chaindl/actions/workflows/release.yml
 
-.. image:: https://github.com/dhruvan2006/ocfinance/actions/workflows/tests.yml/badge.svg
-    :target: https://github.com/dhruvan2006/ocfinance/actions/workflows/tests.yml
+.. image:: https://github.com/dhruvan2006/chaindl/actions/workflows/tests.yml/badge.svg
+    :target: https://github.com/dhruvan2006/chaindl/actions/workflows/tests.yml
 
-.. image:: https://img.shields.io/pypi/v/ocfinance
-    :target: https://pypi.org/project/ocfinance/
+.. image:: https://img.shields.io/pypi/v/chaindl
+    :target: https://pypi.org/project/chaindl/
 
 .. image:: https://static.pepy.tech/badge/ocfinance
-    :target: https://pypi.org/project/ocfinance/
+    :target: https://pypi.org/project/chaindl/
 
-.. image:: https://img.shields.io/github/license/dhruvan2006/ocfinance
-    :target: https://github.com/dhruvan2006/ocfinance
+.. image:: https://img.shields.io/github/license/dhruvan2006/chaindl
+    :target: https://github.com/dhruvan2006/chaindl
 
-Ocfinance is a lightweight Python library that lets you fetch historical and live on-chain crypto data
+`chaindl` is a lightweight Python library that lets you fetch historical and live on-chain crypto data
 from multiple public sources in one step. Whether you want to analyze metrics from Bitcoin, Ethereum,
-or other chains, ocfinance handles the heavy lifting so you can focus on insights.
+or other chains, `chaindl` handles the heavy lifting so you can focus on insights.
 
 It supports:
 
@@ -42,7 +42,7 @@ Install using pip:
 
 .. code-block:: bash
 
-    pip install ocfinance
+    pip install chaindl
 
 You will need Python 3 to use this package.
 
@@ -51,13 +51,13 @@ You will need Python 3 to use this package.
 Usage
 =====
 
-To use `ocfinance`, all you need is the direct URL of a metric or chart from a supported site.
+To use `chaindl`, all you need is the direct URL of a metric or chart from a supported site.
 
 .. code-block:: python
 
-    import ocfinance as of
+    import chaindl
 
-    df = of.download(
+    df = chaindl.download(
         "https://charts.checkonchain.com/btconchain/unrealised/mvrv_all_zscore/mvrv_all_zscore_light.html",
     )
 
@@ -86,7 +86,7 @@ Example output:
 Supported Sources
 =================
 
-Ocfinance supports URLs from the following public sources:
+chaindl supports URLs from the following public sources:
 
 CheckOnChain (`charts.checkonchain.com <https://charts.checkonchain.com>`__)
 ----------------------------------------------------------------------------
@@ -96,7 +96,7 @@ Example:
 .. code-block:: python
 
     url = "https://charts.checkonchain.com/btconchain/unrealised/mvrv_all_zscore/mvrv_all_zscore_light.html"
-    df = of.download(url)
+    df = chaindl.download(url)
 
 ChainExposed (`chainexposed.com <https://chainexposed.com/>`__)
 ---------------------------------------------------------------
@@ -106,7 +106,7 @@ Example:
 .. code-block:: python
 
     url = "https://chainexposed.com/NUPL.html"
-    df = of.download(url)
+    df = chaindl.download(url)
 
 WooCharts (`woocharts.com <https://woocharts.com/>`__)
 ------------------------------------------------------
@@ -116,7 +116,7 @@ Example:
 .. code-block:: python
 
     url = "https://woocharts.com/bitcoin-price-models/"
-    df = of.download(url)
+    df = chaindl.download(url)
 
 Cryptoquant (`cryptoquant.com <https://cryptoquant.com/>`__)
 ------------------------------------------------------------
@@ -126,14 +126,14 @@ Cryptoquant (`cryptoquant.com <https://cryptoquant.com/>`__)
 .. code-block:: python
 
     import os
-    import ocfinance as of
+    import chaindl
 
     # Setup environment variables
     email = os.getenv('CRYPTOQUANT_EMAIL')
     password = os.getenv('CRYPTOQUANT_PASSWORD')
 
     # Download the data
-    data = of.download(
+    data = chaindl.download(
         "https://cryptoquant.com/analytics/query/66451fd6f3cac64b85386229?v=66451fd6f3cac64b8538622b",
         email=email,
         password=password
@@ -153,7 +153,7 @@ Example:
 .. code-block:: python
 
     url = "https://charts.bitbo.io/long-term-power-law/"
-    df = of.download(url)
+    df = chaindl.download(url)
 
 Bitcoin Magazine Pro (`bitcoinmagazinepro.com <https://www.bitcoinmagazinepro.com>`__)
 --------------------------------------------------------------------------------------
@@ -163,7 +163,7 @@ Example:
 .. code-block:: python
 
     url = "https://www.bitcoinmagazinepro.com/charts/puell-multiple/"
-    df = of.download(url)
+    df = chaindl.download(url)
 
 Blockchain.com (`blockchain.com <https://www.blockchain.com/explorer/charts/>`__)
 ---------------------------------------------------------------------------------
@@ -173,7 +173,7 @@ Example:
 .. code-block:: python
 
     url = "https://www.blockchain.com/explorer/charts/market-price"
-    df = of.download(url)
+    df = chaindl.download(url)
 
 ---
 
@@ -196,7 +196,7 @@ If the URL is invalid or from an unsupported domain, an exception will be raised
 
 .. code-block:: python
 
-    ocfinance.download("https://unsupported-domain.com")
+    chaindl.download("https://unsupported-domain.com")
     # Raises ValueError: Unsupported source
 
 ---
@@ -206,8 +206,8 @@ Contributing
 
 We welcome contributions! To add support for a new data source:
 
-1. Create a new scraper module in `ocfinance/sources/`
-2. Add a URL pattern matcher in `ocfinance/download.py`
+1. Create a new scraper module in `chaindl/sources/`
+2. Add a URL pattern matcher in `chaindl/download.py`
 3. Add tests and add documentation
 4. Submit a pull request
 
@@ -216,4 +216,4 @@ We welcome contributions! To add support for a new data source:
 License
 =======
 
-Ocfinance is released under the MIT License.
+chaindl is released under the MIT License.

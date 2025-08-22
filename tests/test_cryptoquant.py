@@ -3,7 +3,7 @@ import pytest
 import pandas as pd
 from dotenv import load_dotenv
 
-from ocfinance.scraper.cryptoquant import _download, _create_dataframe
+from chaindl.scraper.cryptoquant import _download, _create_dataframe
 
 load_dotenv()
 

@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from ocfinance.scraper.blockchain import _download
+from chaindl.scraper.blockchain import _download
 
 @pytest.mark.parametrize("url, expected_columns", [
     (

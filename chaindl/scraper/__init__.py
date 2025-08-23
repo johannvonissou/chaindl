@@ -6,3 +6,4 @@ from .cryptoquant import _download
 from .bitcoinmagazinepro import _download
 from .blockchain import _download
 from .glassnode import _download
+from .theblock import _download

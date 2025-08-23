@@ -33,6 +33,7 @@ It supports:
 - `Bitcoin Magazine Pro <https://www.bitcoinmagazinepro.com>`__
 - `Blockchain.com <https://www.blockchain.com/explorer/charts/>`__
 - `Glassnode <https://studio.glassnode.com/charts/>`__
+- `The Block <https://www.theblock.co/data/>`__
 
 ---
 
@@ -189,6 +190,18 @@ Example:
 .. code-block:: python
 
     url = "https://studio.glassnode.com/charts/addresses.ActiveCount?a=BTC"
+    df = chaindl.download(url)
+
+The BLock (`theblock.co/data <https://www.theblock.co/data/>`__)
+---------------------------------------------------------------------------
+
+Click 'Share' and 'Copy Link' to get the URL of the respective metric.
+
+Example:
+
+.. code-block:: python
+
+    url = "https://www.theblock.co/data/crypto-markets/spot/total-exchange-volume-daily"
     df = chaindl.download(url)
 
 Optional Arguments

@@ -32,6 +32,7 @@ It supports:
 - `Bitbo Charts <https://charts.bitbo.io/index/>`__
 - `Bitcoin Magazine Pro <https://www.bitcoinmagazinepro.com>`__
 - `Blockchain.com <https://www.blockchain.com/explorer/charts/>`__
+- `Glassnode <https://studio.glassnode.com/charts/>`__
 
 ---
 
@@ -176,6 +177,19 @@ Example:
     df = chaindl.download(url)
 
 ---
+
+Glassnode (`studio.glassnode.com <https://studio.glassnode.com/charts/>`__)
+---------------------------------------------------------------------------
+
+Only basic (T1) metrics are supported. You can find a list of the basic metrics
+on their `website <https://docs.glassnode.com/data/metric-catalog#basic-metrics>`__.
+
+Example:
+
+.. code-block:: python
+
+    url = "https://studio.glassnode.com/charts/addresses.ActiveCount?a=BTC"
+    df = chaindl.download(url)
 
 Optional Arguments
 ==================

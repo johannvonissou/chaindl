@@ -34,6 +34,7 @@ handles the heavy lifting so you can focus on insights.
 - [Bitbo Charts](https://charts.bitbo.io/)
 - [Bitcoin Magazine Pro](https://www.bitcoinmagazinepro.com)
 - [Blockchain.com](https://www.blockchain.com/explorer/charts)
+- [Glassnode](https://studio.glassnode.com/charts/)
 
 ## Installation
 To install the `chaindl` package, use pip:

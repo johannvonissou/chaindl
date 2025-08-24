@@ -36,6 +36,7 @@ handles the heavy lifting so you can focus on insights.
 - [Blockchain.com](https://www.blockchain.com/explorer/charts)
 - [Glassnode](https://studio.glassnode.com/charts/)
 - [The Block](https://www.theblock.co/data/)
+- [Dune](https://dune.com/)
 
 ## Installation
 To install the `chaindl` package, use pip:

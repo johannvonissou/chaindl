@@ -34,6 +34,7 @@ It supports:
 - `Blockchain.com <https://www.blockchain.com/explorer/charts/>`__
 - `Glassnode <https://studio.glassnode.com/charts/>`__
 - `The Block <https://www.theblock.co/data/>`__
+- `Dune <https://dune.com/>`__
 
 ---
 
@@ -192,7 +193,7 @@ Example:
     url = "https://studio.glassnode.com/charts/addresses.ActiveCount?a=BTC"
     df = chaindl.download(url)
 
-The BLock (`theblock.co/data <https://www.theblock.co/data/>`__)
+The Block (`theblock.co/data <https://www.theblock.co/data/>`__)
 ---------------------------------------------------------------------------
 
 Click 'Share' and 'Copy Link' to get the URL of the respective metric.
@@ -202,6 +203,20 @@ Example:
 .. code-block:: python
 
     url = "https://www.theblock.co/data/crypto-markets/spot/total-exchange-volume-daily"
+    df = chaindl.download(url)
+
+Dune (`dune.com <https://dune.com/>`__)
+---------------------------------------
+
+When on a Dune dashboard, you need to open the specific indicator/chart to access the queries page that shows the SQL and results. The URL should be in the format `https://dune.com/queries/{query_id}/{result_id}`.
+
+.. image:: ../assets/dune.png
+
+Example:
+
+.. code-block:: python
+
+    url = "https://dune.com/queries/5583538/9204329"
     df = chaindl.download(url)
 
 Optional Arguments

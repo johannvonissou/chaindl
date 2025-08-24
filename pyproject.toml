@@ -28,7 +28,8 @@ dependencies = [
     "seleniumbase",
     "selenium",
     "selenium-wire",
-    "blinker==1.7.0"
+    "blinker==1.7.0",
+    "cloudscraper"
 ]
 
 [project.urls]

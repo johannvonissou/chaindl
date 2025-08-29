@@ -34,11 +34,13 @@ def _download(url, **kwargs):
     df = pd.DataFrame(processed_data)
 
     if not df.empty:
-        df = df.set_index('Date')
+        df = df.set_index("Date")
+        
         v_columns = sorted(
             [col for col in df.columns if col.startswith("v")],
             key=lambda x: int(x[1:]) if x[1:].isdigit() else 0
         )
+
         df = df[v_columns]
 
     return df
@@ -58,9 +60,9 @@ def _check_validity(url):
 def _intercept_network_requests(url, check_interval=0.5, timeout=30):
     # Set up Chrome options for headless mode
     chrome_options = Options()
-    chrome_options.add_argument('--headless')  # Enable headless mode
-    chrome_options.add_argument('--disable-gpu')  # Disable GPU for compatibility
-    chrome_options.add_argument('--no-sandbox')  # Bypass OS security model
+    chrome_options.add_argument("--headless")  # Enable headless mode
+    chrome_options.add_argument("--disable-gpu")  # Disable GPU for compatibility
+    chrome_options.add_argument("--no-sandbox")  # Bypass OS security model
 
     driver = webdriver.Chrome(options=chrome_options)
     driver.get(url)

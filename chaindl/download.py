@@ -33,6 +33,7 @@ def download(url, start=None, end=None, **kwargs):
         - Glassnode: "https://studio.glassnode.com/charts"
         - The Block: "https://www.theblock.co"
         - Dune: "https://dune.com"
+        - Looknode: "https://www.looknode.com"
 
     Example:
         >>> df = download("https://charts.checkonchain.com/path/to/indicator")

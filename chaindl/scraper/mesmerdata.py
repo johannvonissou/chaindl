@@ -17,7 +17,7 @@ def _download(url, **kwargs):
         if len(raw_col_data) == 0:
             continue
             
-        dates = pd.to_datetime([item[0] for item in raw_col_data], unit='ms').normalize()
+        dates = pd.to_datetime([item[0] for item in raw_col_data], unit="ms").normalize()
         values = [item[1] for item in raw_col_data]
         series = pd.Series(values, index=dates, name=raw_col["label"])
         all_series.append(series)
@@ -25,6 +25,7 @@ def _download(url, **kwargs):
     if all_series:
         df = pd.concat(all_series, axis=1)
         df.sort_index(inplace=True)
+        df.index.name = "Date"
 
         return df
     else:

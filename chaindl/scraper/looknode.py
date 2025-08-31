@@ -10,15 +10,17 @@ INVALID_LINKS = ["BTCPrice", "getUserInfo", "chartInfo"]
 API_URL = "https://www.looknode.com/api/"
 
 def _download(url, **kwargs):
-    data_json = _intercept_network_requests(url, **kwargs)
+    data_raw = _intercept_network_requests(url, **kwargs)
 
-    data = data_json.get("data", [])
+    data = data_raw.get("data", [])
 
     processed_data = []
+
     for entry in data:
         date = pd.to_datetime(entry["t"], unit="ms").normalize()
 
         values = {}
+        
         for key, value in entry.items():
             if key == "t":
                 continue

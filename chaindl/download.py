@@ -34,6 +34,7 @@ def download(url, start=None, end=None, **kwargs):
         - The Block: "https://www.theblock.co"
         - Dune: "https://dune.com"
         - Looknode: "https://www.looknode.com"
+        - MesmerData: "https://www.mesmerdata.com"
 
     Example:
         >>> df = download("https://charts.checkonchain.com/path/to/indicator")
@@ -51,6 +52,7 @@ def download(url, start=None, end=None, **kwargs):
     THEBLOCK_BASE_URL = "https://www.theblock.co"
     DUNE_BASE_URL = "https://dune.com"
     LOOKNODE_BASE_URL = "https://www.looknode.com"
+    MESMERDATA_BASE_URL = "https://www.mesmerdata.com"
 
     data = pd.DataFrame()
 
@@ -76,6 +78,8 @@ def download(url, start=None, end=None, **kwargs):
         data = scraper.dune._download(url)
     elif url.startswith(LOOKNODE_BASE_URL):
         data = scraper.looknode._download(url)
+    elif url.startswith(MESMERDATA_BASE_URL):
+        data = scraper.mesmerdata._download(url)
     else:
         raise ValueError("Unsupported source. Find the list of supported websites here: https://chaindl.readthedocs.io/")
     

@@ -228,6 +228,16 @@ Example:
 
     url = "https://www.looknode.com/charts?chartId=exNetBinance"
     df = chaindl.download(url)
+    
+Looknode (`mesmerdata.com <https://www.mesmerdata.com>`__)
+------------------------------------------------------
+
+Example:
+
+.. code-block:: python
+
+    url = "https://www.mesmerdata.com/on-chain-charts/btc-block-size/"
+    df = chaindl.download(url)
 
 
 Optional Arguments

@@ -9,3 +9,4 @@ from .glassnode import _download
 from .theblock import _download
 from .dune import _download
 from .looknode import _download
+from .mesmerdata import _download

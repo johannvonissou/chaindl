@@ -19,5 +19,4 @@ def test_looknode_download(url, expected_columns):
     assert isinstance(data, pd.DataFrame)
     assert isinstance(data.index, pd.DatetimeIndex)
 
-    print(data)
     assert all(col in data.columns for col in expected_columns)

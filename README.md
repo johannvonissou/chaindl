@@ -38,6 +38,7 @@ handles the heavy lifting so you can focus on insights.
 - [The Block](https://www.theblock.co/data/)
 - [Dune](https://dune.com/)
 - [Looknode](https://www.looknode.com/)
+- [MesmerData](https://www.mesmerdata.com)
 
 ## Installation
 To install the `chaindl` package, use pip:
